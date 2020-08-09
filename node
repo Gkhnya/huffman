@@ -1,0 +1,9 @@
+package huffman;
+
+public class Node {
+
+    int veri;
+    char c;
+    Node sol,sag;
+    
+}
