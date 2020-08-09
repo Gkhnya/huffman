@@ -1,0 +1,59 @@
+package huffman;
+
+import java.util.PriorityQueue;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Huffman hf = new Huffman();
+        Scanner s = new Scanner(System.in);
+        int n = 6;
+        char[] charArray = {'g', 'd', 'm', 'k', 'b', 'a'};
+        int[] charfreq = {4, 8, 10, 20, 35, 50};
+        int freqbefore = (4+8+10+20+35+50)*8;
+        int freqafter = (50*1+35*2+20*3+10*4+8*5+4*5);
+        /* n: dizi boyutu */ 
+        /*                  122
+                           /   \
+                          50   72 
+                          (a) /   \
+                             35    42
+                             (b)  /  \
+                                 20   22 
+                                 (k) /  \ 
+                                    10   12
+                                    (m) /  \
+                                       4    8
+                                      (g)  (d)        
+        */
+        PriorityQueue<Node> q = new PriorityQueue<Node>(n, new MyComparator());
+        for (int i = 0; i < n; i++) {
+            Node hn = new Node();
+            hn.c = charArray[i];
+            hn.veri = charfreq[i];
+            hn.sol = null;
+            hn.sag = null;
+            q.add(hn);
+        }
+        Node root = null;
+        while (q.size() > 1) {
+            Node x = q.peek();
+            q.poll();
+            Node y = q.peek();
+            q.poll();
+            Node f = new Node();
+            f.veri = x.veri + y.veri;
+            f.c = '-';
+            f.sol = x;
+            f.sag = y;
+            root = f;
+            q.add(f);
+        }
+        System.out.println("Huffmandan önce : " + freqbefore + " bit");
+        hf.printCode(root, "");
+        System.out.println("Huffmandan sonra : " + freqafter + " bit");
+              
+        
+    }
+}
