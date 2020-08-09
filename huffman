@@ -1,0 +1,15 @@
+package huffman;
+
+public class Huffman {
+
+    public static void printCode(Node root, String s) {
+
+        if (root.sol == null && root.sag == null && Character.isLetter(root.c)) {
+            System.out.println("Karakter : " + root.c + " / Huffman Kodu : " + s + 
+                    " / Bit Sayısı : " + s.length()  + " " );
+            return;
+        }
+        printCode(root.sol, s + "0");
+        printCode(root.sag, s + "1");
+    }
+}
