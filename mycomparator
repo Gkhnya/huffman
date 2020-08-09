@@ -1,0 +1,12 @@
+package huffman;
+
+import java.util.Comparator;
+
+/* Düğümleri veri değerleri temelinde karşılaştırmaya yarar */
+class MyComparator implements Comparator<Node> {
+
+    public int compare(Node x, Node y) {
+
+        return x.veri - y.veri;
+    }
+}
